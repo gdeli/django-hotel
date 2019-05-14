@@ -5,7 +5,7 @@ from .models import Hotel
 
 def home(request):
     search = request.GET.get('search_hotel', '')
-    q = Hotel.objects.all()
+    q = Hotel.objects.all().order_by('-timestamp')
     kota = request.GET.get('kota', '')
     provinsi = request.GET.get('provinsi', '')    
     if search != '':
