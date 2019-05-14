@@ -1,0 +1,101 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    {% block title %} <title>Hotel App | Home</title> {% endblock %}
+    <link rel="stylesheet" href="{% static 'hotel/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'hotel/font-awesome/css/font-awesome.min.css' %}">
+    {% block style %} <link rel="stylesheet" href="{% static 'hotel/app.css' %}"> {% endblock %}
+  </head>
+  <body>
+
+  
+
+    <div class="container cs-content">
+    
+    {% block content  %}
+      <div class="row cs-section-header">
+          <div class="col-lg-12"><h2>Hotel List</h2></div>
+      </div>
+      <!-- start: form - add song  -->
+      <div class="row cs-form-add">
+       
+      </div>
+      <!-- end: form - add song  -->
+      <!-- start: table - song  -->
+
+      <div class="search">
+        <form>
+            <input type="text" name="search_hotel" >
+            <select name="kota">
+              <option value="">Select</option>
+              {% for loc in location %}
+                <option value= "{{ loc.kota }}">{{ loc.kota }}</option>
+              {% endfor %}
+            </select>
+            <select name="provinsi">
+              <option value="">Select</option>
+              {% for loc in location %}
+                <option value= "{{ loc.provinsi }}">{{ loc.provinsi }}</option>
+              {% endfor %}
+            </select>
+            <input type="submit" value="Submit">
+        </form>
+      </div>
+      <div class="row">
+          <table class="table">
+              <thead>
+              <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Nama</th>
+                  <th scope="col">Harga</th>
+                  <th scope="col">Provinsi</th>
+                  <th scope="col">Kota</th>
+                  <th scope="col">Kodepos</th>
+                  <th scope="col">Alamat</th>
+                  <th scope="col">timestamp</th>
+                  <th scope="col"></th>
+              </tr>
+              </thead>
+              <tbody>
+              {% for song in songs %}
+              <tr>
+                  <td>{{ song.id }}</td>
+                  <td>{{ song.nama }}</td>
+                  <td>{{ song.harga }}</td>
+                  <td>{{ song.provinsi }}</td>
+                  <td>{{ song.kota }}</td>
+                  <td>{{ song.kodepos }}</td>
+                  <td>{{ song.alamat }}</td>
+                  <td>{{ song.timestamp }}</td>
+                  <td>
+                      <!-- <a class="btn btn-sm btn-outline-primary" href="edit/{{ song.id }}"> -->
+                      <!--  <i class="fa fa-pencil-square-o" aria-hidden="true"></i> -->
+                      <!--  </a> -->
+                       <!-- <a class="btn btn-sm btn-outline-danger" onclick="sendData({{ song.id }})" data-toggle="modal" data-target="#exampleModalCenter">-->
+                        <!-- <i class="fa fa-trash" aria-hidden="true"></i>-->
+                      <!-- </a>-->
+                  </td>
+              </tr>
+              {% endfor %}
+              {% if not songs %}
+                <tr>
+                  <td colspan="6" class="cs-text-center cs-empty-table"> There is no hotel yet. Please add a hotel ! </td>
+                </tr>
+              {% endif %}
+              </tbody>
+          </table>
+      </div>
+      <!-- end: table - song  -->
+    {% endblock  %} 
+
+    </div>
+
+    <script src="{% static 'hotel/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'hotel/popper.min.js' %}"></script>
+    <script src="{% static 'hotel/bootstrap.min.js' %}"></script>
+    {% block script %} <script src="{% static 'hotel/app.js' %}"></script> {% endblock  %}
+  </body>
+</html>
