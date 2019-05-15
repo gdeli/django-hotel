@@ -9,7 +9,12 @@ def home(request):
     kota = request.GET.get('kota', '')
     provinsi = request.GET.get('provinsi', '')
     minprice = request.GET.get('harga_minimum','')
-    maxprice = request.GET.get('harga_maksimum','')    
+    if minprice !='':
+        minprice = strToint(minprice) 
+    maxprice = request.GET.get('harga_maksimum','')
+    if maxprice !='':
+        maxprice = strToint(maxprice)
+
     if search != '':
         q = q.filter(nama__contains=search)
     if kota != '':
@@ -40,6 +45,15 @@ def home(request):
 def getlocation():
     getloc = Hotel.objects.all()
     return getloc.values('kota','provinsi')
+
+def strToint(s):
+    try:
+        convert = int(s,10)
+    except:
+        return ''
+    return convert
+
+
 
 
 
