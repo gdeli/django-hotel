@@ -41,6 +41,8 @@
                 <option value= "{{ loc.provinsi }}">{{ loc.provinsi }}</option>
               {% endfor %}
             </select>
+            <input type="text" name="harga_minimum" placeholder="harga minimum">
+            <input type="text" name="harga_maksimum" placeholder="harga maksimum">
             <input type="submit" value="Submit">
         </form>
       </div>
@@ -60,16 +62,16 @@
               </tr>
               </thead>
               <tbody>
-              {% for song in songs %}
+              {% for hotel in hotels|slice:":20" %}
               <tr>
-                  <td>{{ song.id }}</td>
-                  <td>{{ song.nama }}</td>
-                  <td>{{ song.harga }}</td>
-                  <td>{{ song.provinsi }}</td>
-                  <td>{{ song.kota }}</td>
-                  <td>{{ song.kodepos }}</td>
-                  <td>{{ song.alamat }}</td>
-                  <td>{{ song.timestamp }}</td>
+                  <td>{{ hotel.id }}</td>
+                  <td>{{ hotel.nama }}</td>
+                  <td>{{ hotel.harga }}</td>
+                  <td>{{ hotel.provinsi }}</td>
+                  <td>{{ hotel.kota }}</td>
+                  <td>{{ hotel.kodepos }}</td>
+                  <td>{{ hotel.alamat }}</td>
+                  <td>{{ hotel.timestamp }}</td>
                   <td>
                       <!-- <a class="btn btn-sm btn-outline-primary" href="edit/{{ song.id }}"> -->
                       <!--  <i class="fa fa-pencil-square-o" aria-hidden="true"></i> -->
@@ -80,7 +82,7 @@
                   </td>
               </tr>
               {% endfor %}
-              {% if not songs %}
+              {% if not hotels %}
                 <tr>
                   <td colspan="6" class="cs-text-center cs-empty-table"> There is no hotel yet. Please add a hotel ! </td>
                 </tr>
