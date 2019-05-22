@@ -1,7 +1,8 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth import login, authenticate
 from django.http import HttpResponseRedirect
 from .models import Hotel
+from .import forms
 
 def home(request):
     search = request.GET.get('search_hotel', '')
@@ -53,7 +54,17 @@ def strToint(s):
         return ''
     return convert
 
-
+def review(request, pk):
+    q = Hotel.objects.all()
+    hotels = get_object_or_404(Hotel, pk=pk)
+    if request.method == 'POST':
+        form = forms.Reviews(request.POST, instance=hotels)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    else:
+        form = forms.Reviews()
+    return render(request, 'hotel/review.html', {'form':form, 'hotel':hotels})
 
 
 
