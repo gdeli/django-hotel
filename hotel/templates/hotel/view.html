@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  {% block title %} <title>Hotel App | Home</title> {% endblock %}
+  <link rel="stylesheet" href="{% static 'hotel/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'hotel/font-awesome/css/font-awesome.min.css' %}">
+  {% block style %} <link rel="stylesheet" href="{% static 'hotel/app.css' %}"> {% endblock %}
+</head>
+<div class="container">
+    </div>
+    <div class="jumbotron">
+        <h1>Review</h1> 
+        {% for i in b %}
+            <p>rating {{ i.rating }}</p>
+            <p>komentar: {{ i.review }}</p>
+        {% endfor %}
+    </div>

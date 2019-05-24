@@ -20,9 +20,21 @@ class Hotel(models.Model):
     kodepos = models.CharField(max_length=50)
     alamat = models.CharField(max_length=50)
     timestamp = models.DateTimeField(null=True)
+    
+    def __str__(self):
+        return self.nama
+
+class reviewer(models.Model):
+    Rating = (
+        ('1', '1',),
+        ('2', '2',),
+        ('3', '3',),
+        ('4', '4',),
+        ('5', '5',),
+    )
+    ratinghotel = models.ForeignKey(Hotel, on_delete=models.CASCADE, blank=True,)
     rating = models.CharField(max_length=9,choices=Rating,default=1)
     review = models.TextField()
-
+    
     def __str__(self):
-        return self.nama 
-
+        return self.review

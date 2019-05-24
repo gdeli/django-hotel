@@ -1,7 +1,7 @@
 from django import forms
-from .models import Hotel
+from .models import Hotel,reviewer
 class Reviews(forms.ModelForm):
       class Meta:
-        model = Hotel
-        fields = ['rating', 'review']
+        model = reviewer
+        fields = ['rating', 'review',]
 
