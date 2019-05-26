@@ -28,9 +28,9 @@ def home(request):
         q = q.filter(harga__lte=maxprice)
     elif minprice !='':
         q = q.filter(harga__gte=minprice)
-
-    return render(request, 'hotel/index.html', { 'hotels': q, 'location' : getlocation(), })
-
+    
+    context = { 'hotels': q, 'location' : getlocation(), }
+    return render(request, 'hotel/index.html', context )
     
 
 
@@ -56,6 +56,8 @@ def strToint(s):
 
 def review(request, pk):
     hotels = get_object_or_404(Hotel, pk=pk,)
+    b = Hotel.objects.get(pk=pk)
+    b = b.reviewer_set.all()
     if request.method == 'POST':
         form = forms.Reviews(request.POST)
         if form.is_valid():
@@ -65,16 +67,10 @@ def review(request, pk):
             return redirect('home')
     else:
         form = forms.Reviews()
-    return render(request, 'hotel/review.html', {'form':form, 'hotel':hotels, })
+    context =  {'form':form, 'hotel':hotels, 'b':b }
+    return render(request, 'hotel/review.html', context)
 
-def view(request, pk):
-    hotels = get_object_or_404(Hotel, pk=pk)
-    b = Hotel.objects.get(pk=pk)
-    b = b.reviewer_set.all()
-    #b = Hotel.objects.all()
-    #b = b_set.all()
-    return render(request, 'hotel/view.html', { 'hotel':hotels, 'b':b , })
-    
+
 
 
 

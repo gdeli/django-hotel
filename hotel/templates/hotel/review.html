@@ -14,4 +14,13 @@
     {{ form }}
     <button type="submit" class="btn btn-primary mb-2">Submit</button>
   </form>
+    <div class="container">
+    </div>
+    <div class="jumbotron">
+        <h1>Review</h1> 
+        {% for i in b %}
+            <p>rating {{ i.rating }}</p>
+            <p>komentar: {{ i.review }}</p>
+        {% endfor %}
+    </div>
 </div>

@@ -6,6 +6,5 @@ app_name = 'hotel'
 
 urlpatterns = [
     url(r'^$', views.home, name="home"),
-    url(r'^review/(?P<pk>\d+)/$', views.review, name="review"),
-    url(r'^view/(?P<pk>\d+)/$', views.view, name="view"),    
+    url(r'^review/(?P<pk>\d+)/$', views.review, name="review"), 
 ]

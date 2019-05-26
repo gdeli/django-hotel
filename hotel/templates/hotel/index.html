@@ -54,7 +54,6 @@
                   <th scope="col">Nama</th>
                   <th scope="col">Harga</th>
                   <th scope="col">Review</th>
-                  <th scope="col">View</th>
                   <th scope="col">Provinsi</th>
                   <th scope="col">Kota</th>
                   <th scope="col">Kodepos</th>
@@ -70,7 +69,6 @@
                   <td>{{ hotel.nama }}</td>
                   <td>{{ hotel.harga }}</td>
                   <td><a href="{% url 'review' pk=hotel.id %}">Review</a></td>
-                  <td><a href="{% url 'view' pk=hotel.id %}">View</a></td>
                   <td>{{ hotel.provinsi }}</td>
                   <td>{{ hotel.kota }}</td>
                   <td>{{ hotel.kodepos }}</td>
