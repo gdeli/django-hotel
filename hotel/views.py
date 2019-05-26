@@ -3,6 +3,7 @@ from django.contrib.auth import login, authenticate
 from django.http import HttpResponseRedirect
 from .models import Hotel,reviewer
 from .import forms
+from django.db.models import Avg
 
 def home(request):
     search = request.GET.get('search_hotel', '')
@@ -58,6 +59,9 @@ def review(request, pk):
     hotels = get_object_or_404(Hotel, pk=pk,)
     b = Hotel.objects.get(pk=pk)
     b = b.reviewer_set.all()
+    c = Hotel.objects.get(pk=pk)
+    avg = c.reviewer_set.aggregate(Avg('rating')).values()[0]
+   
     if request.method == 'POST':
         form = forms.Reviews(request.POST)
         if form.is_valid():
@@ -67,7 +71,7 @@ def review(request, pk):
             return redirect('home')
     else:
         form = forms.Reviews()
-    context =  {'form':form, 'hotel':hotels, 'b':b }
+    context =  {'form':form, 'hotel':hotels, 'b':b, 'avg':avg }
     return render(request, 'hotel/review.html', context)
 
 

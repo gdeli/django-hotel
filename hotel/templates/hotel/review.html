@@ -18,6 +18,7 @@
     </div>
     <div class="jumbotron">
         <h1>Review</h1> 
+        <p> overall rating:{{ avg }}</p>
         {% for i in b %}
             <p>rating {{ i.rating }}</p>
             <p>komentar: {{ i.review }}</p>

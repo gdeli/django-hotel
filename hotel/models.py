@@ -5,13 +5,6 @@ from django.dispatch import receiver
 
 class Hotel(models.Model):
 
-    Rating = (
-        ('1', '1',),
-        ('2', '2',),
-        ('3', '3',),
-        ('4', '4',),
-        ('5', '5',),
-    )
 
     nama = models.CharField(max_length=50)
     harga = models.IntegerField(default=0)
@@ -26,14 +19,14 @@ class Hotel(models.Model):
 
 class reviewer(models.Model):
     Rating = (
-        ('1', '1',),
-        ('2', '2',),
-        ('3', '3',),
-        ('4', '4',),
-        ('5', '5',),
+        (1, '1',),
+        (2, '2',),
+        (3, '3',),
+        (4, '4',),
+        (5, '5',),
     )
     ratinghotel = models.ForeignKey(Hotel, on_delete=models.CASCADE, blank=True,)
-    rating = models.CharField(max_length=9,choices=Rating,default=1)
+    rating = models.FloatField(choices=Rating,default=1)
     review = models.TextField()
     
     def __str__(self):
