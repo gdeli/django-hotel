@@ -9,16 +9,14 @@
   {% block style %} <link rel="stylesheet" href="{% static 'hotel/app.css' %}"> {% endblock %}
 </head>
 <div class="container">
-<form class="review" action="{% url 'review' pk=hotel.id %}" method="post">
-    {% csrf_token %}
-    {{ form }}
-    <button type="submit" class="btn btn-primary mb-2">Submit</button>
-  </form>
-    <div class="container">
-    </div>
     <div class="jumbotron">
-        <h1>Review</h1> 
-        <p> overall rating:{{ avg }}</p>
+        <h1>Review</h1>
+        <form class="review" action="{% url 'review' pk=hotel.id %}" method="post">
+            {% csrf_token %}
+            {{ form.as_ul }}
+            <button type="submit" class="btn btn-primary mb-2">Submit</button>
+        </form> 
+        <p><b> overall rating:{{ avg|floatformat:2 }} </b></p>
         {% for i in b %}
             <p>rating {{ i.rating }}</p>
             <p>komentar: {{ i.review }}</p>

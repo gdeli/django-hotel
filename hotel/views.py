@@ -57,10 +57,10 @@ def strToint(s):
 
 def review(request, pk):
     hotels = get_object_or_404(Hotel, pk=pk,)
-    b = Hotel.objects.get(pk=pk)
-    b = b.reviewer_set.all()
-    c = Hotel.objects.get(pk=pk)
-    avg = c.reviewer_set.aggregate(Avg('rating')).values()[0]
+    getall = Hotel.objects.get(pk=pk)
+    b = getall.reviewer_set.all()
+    avg = getall.reviewer_set.aggregate(Avg('rating')).values()
+    avg = list(avg)[0]
    
     if request.method == 'POST':
         form = forms.Reviews(request.POST)
