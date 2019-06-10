@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+import datetime
 
 class Hotel(models.Model):
 
@@ -28,6 +29,6 @@ class reviewer(models.Model):
     ratinghotel = models.ForeignKey(Hotel, on_delete=models.CASCADE, blank=True,)
     rating = models.FloatField(choices=Rating,default=1)
     review = models.TextField()
-    
+    date = models.DateField(auto_now_add=True, blank=True)
     def __str__(self):
         return self.review

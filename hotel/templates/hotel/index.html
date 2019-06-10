@@ -31,13 +31,13 @@
             <input type="text" name="search_hotel" >
             <select name="kota">
               <option value="">Select</option>
-              {% for loc in location %}
+              {% for loc in locationkota %}
                 <option value= "{{ loc.kota }}">{{ loc.kota }}</option>
               {% endfor %}
             </select>
             <select name="provinsi">
               <option value="">Select</option>
-              {% for loc in location %}
+              {% for loc in locationprov %}
                 <option value= "{{ loc.provinsi }}">{{ loc.provinsi }}</option>
               {% endfor %}
             </select>

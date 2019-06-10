@@ -29,8 +29,8 @@ def home(request):
         q = q.filter(harga__lte=maxprice)
     elif minprice !='':
         q = q.filter(harga__gte=minprice)
-    
-    context = { 'hotels': q, 'location' : getlocation(), }
+    getkota,getprov=getlocation()
+    context = { 'hotels': q, 'locationkota' : getkota, 'locationprov' : getprov, }
     return render(request, 'hotel/index.html', context )
     
 
@@ -45,8 +45,9 @@ def home(request):
 
    
 def getlocation():
-    getloc = Hotel.objects.all()
-    return getloc.values('kota','provinsi')
+    getkota = Hotel.objects.values('kota').distinct()
+    getprov = Hotel.objects.values('provinsi').distinct()
+    return getkota,getprov
 
 def strToint(s):
     try:
