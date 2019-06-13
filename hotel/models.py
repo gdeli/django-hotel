@@ -14,6 +14,7 @@ class Hotel(models.Model):
     kodepos = models.CharField(max_length=50)
     alamat = models.CharField(max_length=50)
     timestamp = models.DateTimeField(null=True)
+    photo = models.ImageField(upload_to='images/')
     
     def __str__(self):
         return self.nama

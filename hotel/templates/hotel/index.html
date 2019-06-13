@@ -59,6 +59,7 @@
                   <th scope="col">Kodepos</th>
                   <th scope="col">Alamat</th>
                   <th scope="col">timestamp</th>
+                  <th scope="col">Foto</th>
                   <th scope="col"></th>
               </tr>
               </thead>
@@ -74,6 +75,7 @@
                   <td>{{ hotel.kodepos }}</td>
                   <td>{{ hotel.alamat }}</td>
                   <td>{{ hotel.timestamp }}</td>
+                  <td><img class="img-thumbnail" src="{{ hotel.photo.url }}" alt="Generic placeholder image"></td>
                   <td>
                       <!-- <a class="btn btn-sm btn-outline-primary" href="edit/{{ song.id }}"> -->
                       <!--  <i class="fa fa-pencil-square-o" aria-hidden="true"></i> -->
