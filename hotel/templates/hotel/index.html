@@ -13,7 +13,7 @@
 
   
 
-    <div class="container cs-content">
+    <div class="container cs-content  ">
     
     {% block content  %}
       <div class="row cs-section-header">
@@ -28,23 +28,42 @@
 
       <div class="search">
         <form>
-            <input type="text" name="search_hotel" >
-            <select name="kota">
-              <option value="">Select</option>
-              {% for loc in locationkota %}
-                <option value= "{{ loc.kota }}">{{ loc.kota }}</option>
-              {% endfor %}
-            </select>
-            <select name="provinsi">
-              <option value="">Select</option>
-              {% for loc in locationprov %}
-                <option value= "{{ loc.provinsi }}">{{ loc.provinsi }}</option>
-              {% endfor %}
-            </select>
-            <input type="text" name="harga_minimum" placeholder="harga minimum">
-            <input type="text" name="harga_maksimum" placeholder="harga maksimum">
-            <input type="submit" value="Submit">
+            <div class="form-group">
+            <div class="row">
+              <div class="col-sm-12">
+                <input type="text" class="input-group-text  col-sm-5 my-1" name="search_hotel" >
+                <select name="kota" class="custom-select col-sm-5 my-1">
+                  <option value=""  class="" >Select</option>
+                    {% for loc in locationkota %}
+                      <option value= "{{ loc.kota }}">{{ loc.kota }}</option>
+                    {% endfor %}
+                </select>
+                <select name="getdate" class="custom-select col-sm-5 my-1">
+                  <option value=""  class="" >Select</option>
+                    {% for hotel in hotels %}
+                      <option value= "{{ hotel.date }}">{{ hotel.date }}</option>
+                    {% endfor %}
+                </select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <select name="provinsi" class="browser-default custom-select col-md-5 my-1 ">
+                  <option value="">Select</option>
+                    {% for loc in locationprov %}
+                      <option value= "{{ loc.provinsi }}">{{ loc.provinsi }}</option>
+                    {% endfor %}
+                </select>
+                <input type="text" class="input-group-text col-md-5 my-1" name="harga_minimum" placeholder="harga minimum">
+              </div>
+            </div>
+              <div class="row col-md-12">
+                <input type="text" class="input-group-text col-md-5 my-1" name="harga_maksimum" placeholder="harga maksimum">
+              </div>
+              <input type="submit" class="btn btn-primary col-md-2 my-1" value="Submit">
+          </div>
         </form>
+          <p>there : {{ jmlquery }}, hotel registered. </p>
       </div>
       <div class="row">
           <table class="table">

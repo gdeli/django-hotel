@@ -3,8 +3,12 @@ from django.contrib import admin
 from django.conf.urls.static import static
 from django.conf import settings
 
+admin.site.site_header = "Hotel Melati Admin"
+admin.site.site_title = "Hotel Admin Portal"
+admin.site.index_title = "Welcome Hotel Admin"
+
 urlpatterns = [
-    url(r'^admin/', include(admin.site.urls)),
+    url(r'^admin/', admin.site.urls),
     url(r'', include('hotel.urls')), 
 ]
 

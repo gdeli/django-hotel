@@ -11,14 +11,16 @@ def home(request):
     kota = request.GET.get('kota', '')
     provinsi = request.GET.get('provinsi', '')
     minprice = request.GET.get('harga_minimum','')
+    getdate = request.GET.get('date','')
     if minprice !='':
         minprice = strToint(minprice) 
     maxprice = request.GET.get('harga_maksimum','')
     if maxprice !='':
         maxprice = strToint(maxprice)
-
+    if getdate != '':
+        q = q.filter(date_created=timestamp)
     if search != '':
-        q = q.filter(nama__contains=search)
+        q = q.filter(nama__contains=search) | q.filter(provinsi__contains=search) | q.filter(kota__contains=search) | q.filter(harga__contains=search)
     if kota != '':
         q = q.filter(kota=kota)
     if provinsi != '':
@@ -30,7 +32,8 @@ def home(request):
     elif minprice !='':
         q = q.filter(harga__gte=minprice)
     getkota,getprov=getlocation()
-    context = { 'hotels': q, 'locationkota' : getkota, 'locationprov' : getprov, }
+    jmlquery = q.count()
+    context = { 'hotels': q, 'locationkota' : getkota, 'locationprov' : getprov, 'jmlquery' : jmlquery }
     return render(request, 'hotel/index.html', context )
     
 
@@ -75,8 +78,8 @@ def review(request, pk):
     context =  {'form':form, 'hotel':hotels, 'b':b, 'avg':avg }
     return render(request, 'hotel/review.html', context)
 
-
-
+    
+    
 
 
 
