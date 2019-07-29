@@ -11,14 +11,16 @@ def home(request):
     kota = request.GET.get('kota', '')
     provinsi = request.GET.get('provinsi', '')
     minprice = request.GET.get('harga_minimum','')
+    getdate = request.GET.get('date','')
     if minprice !='':
         minprice = strToint(minprice) 
     maxprice = request.GET.get('harga_maksimum','')
     if maxprice !='':
         maxprice = strToint(maxprice)
-
+    if getdate != '':
+        q = q.filter(date_created=timestamp)
     if search != '':
-        q = q.filter(nama__contains=search)
+        q = q.filter(nama__contains=search) | q.filter(provinsi__contains=search) | q.filter(kota__contains=search) | q.filter(harga__contains=search)
     if kota != '':
         q = q.filter(kota=kota)
     if provinsi != '':
@@ -29,8 +31,9 @@ def home(request):
         q = q.filter(harga__lte=maxprice)
     elif minprice !='':
         q = q.filter(harga__gte=minprice)
-    
-    context = { 'hotels': q, 'location' : getlocation(), }
+    getkota,getprov=getlocation()
+    jmlquery = q.count()
+    context = { 'hotels': q, 'locationkota' : getkota, 'locationprov' : getprov, 'jmlquery' : jmlquery }
     return render(request, 'hotel/index.html', context )
     
 
@@ -45,8 +48,9 @@ def home(request):
 
    
 def getlocation():
-    getloc = Hotel.objects.all()
-    return getloc.values('kota','provinsi')
+    getkota = Hotel.objects.values('kota').distinct()
+    getprov = Hotel.objects.values('provinsi').distinct()
+    return getkota,getprov
 
 def strToint(s):
     try:
@@ -74,8 +78,8 @@ def review(request, pk):
     context =  {'form':form, 'hotel':hotels, 'b':b, 'avg':avg }
     return render(request, 'hotel/review.html', context)
 
-
-
+    
+    
 
 
 

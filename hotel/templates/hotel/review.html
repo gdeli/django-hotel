@@ -13,13 +13,15 @@
         <h1>Review</h1>
         <form class="review" action="{% url 'review' pk=hotel.id %}" method="post">
             {% csrf_token %}
-            {{ form.as_ul }}
+                <p>Rating: {{ form.rating }}</p>
+                <p>Review: {{ form.review }}</p>
             <button type="submit" class="btn btn-primary mb-2">Submit</button>
         </form> 
         <p><b> overall rating:{{ avg|floatformat:2 }} </b></p>
         {% for i in b %}
             <p>rating {{ i.rating }}</p>
             <p>komentar: {{ i.review }}</p>
+            <p>Posted in: {{ i.date }}</p>
         {% endfor %}
     </div>
 </div>
