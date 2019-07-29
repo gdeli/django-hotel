@@ -2,5 +2,7 @@
 
 ### Cara menginstall Aplikasi Hotel ?
 
-GOOGLE IS YOUR FRIEND
+-pertama gunakan pip untuk menginstall requirements.txt yang tersedia pada project
+-wajib hukumnya menggunakan virtual enviroment
+- silahkan di clone untuk belajar
 
